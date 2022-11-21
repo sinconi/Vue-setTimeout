@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>時間到關閉</title>
+  <style>
+    .center {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .clickthis {
+      color: rgb(71, 71, 71);
+      background: pink;
+      padding: 20px 50px;
+      border-radius: 50px;
+    }
+
+    .frame {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.1);
+      height: 100vh;
+      width: 100vw;
+      z-index: 999;
+      transition: .3s;
+    }
+
+    .inner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      height: 200px;
+      background: skyblue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .confirm {
+      background: rgb(148, 91, 91);
+      padding: 5px 40px;
+      border-radius: 30px;
+      border: 1px solid #fff;
+      color: #fff;
+      margin-top: 30px;
+      transition: .5s;
+    }
+
+    .confirm:hover {
+      background: rgb(241, 180, 180);
+      color: rgb(71, 71, 71);
+      transition: .5s;
+      border: 1px solid #777;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="center">
+      <a class="clickthis" @click="clickthis">按一下</a>
+      <div class="frame" v-show="isShow">
+        <div class="inner">
+          <p>這是視窗</p>
+          <a class="confirm" @click="checkThis">確認</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13"></script>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!',
+        isShow: false,
+
+      },
+      methods: {
+        clickthis() {
+          this.isShow = true;
+          if (this.isShow) {
+            setInterval(() => {
+              this.isShow = false
+            }, 2000)
+          }
+        },
+        checkThis() {
+          this.isShow = false
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>
